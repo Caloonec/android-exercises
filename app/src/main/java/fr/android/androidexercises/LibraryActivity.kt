@@ -2,40 +2,48 @@ package fr.android.androidexercises
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.TextView
+import androidx.fragment.app.Fragment
+import fr.android.androidexercises.api.ApiClient
+import fr.android.androidexercises.api.BookService
+import fr.android.androidexercises.model.Book
+import fr.android.androidexercises.model.ShoppingCart
 
-class LibraryActivity : AppCompatActivity() {
+class LibraryActivity : AppCompatActivity(), BookListFragment.OnBookSelectedListener,
+    ShoppingCartFragment.OnBookAddedListener {
+
+    private val bookService: BookService by lazy {
+        ApiClient.createService(BookService::class.java)
+    }
+
+    private val shoppingCart = ShoppingCart()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_library)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
 
-        val messageTextView = findViewById<TextView>(R.id.messageTextView)
-        // TODO call text on messageTextView
-
-        setSupportActionBar(toolbar)
+        if (savedInstanceState == null) {
+            navigateToFragment(BookListFragment.newInstance(), false)
+        }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_library, menu)
-        return true
+    override fun onBookSelected(book: Book) {
+        navigateToFragment(BookDetailFragment.newInstance(book), true)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        val id = item.itemId
+    override fun onBookAdded(book: Book) {
+        shoppingCart.addBook(book)
+    }
 
+    private fun navigateToFragment(fragment: Fragment, addToBackStack: Boolean) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        if (addToBackStack) {
+            transaction.addToBackStack(null)
+        }
+        transaction.commit()
+    }
 
-        return if (id == R.id.action_settings) {
-            true
-        } else super.onOptionsItemSelected(item)
-
+    fun showShoppingCart() {
+        navigateToFragment(ShoppingCartFragment.newInstance(shoppingCart.getTotalPrice()), true)
     }
 }

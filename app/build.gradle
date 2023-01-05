@@ -19,6 +19,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -26,9 +35,17 @@ dependencies {
     implementation(
             "androidx.appcompat:appcompat:$versions.appcompat_version",
             "com.google.android.material:material:$versions.material_version",
-            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+            "androidx.constraintlayout:constraintlayout:$versions.constraintlayout_version",
+            "com.jakewharton.timber:timber:$versions.timber_version",
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            'com.squareup.retrofit2:retrofit:2.9.0',
+            'com.squareup.retrofit2:converter-gson:2.9.0',
+            'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1'
+
+            // TODO add Timber
     )
 }
+
 repositories {
     mavenCentral()
 }
