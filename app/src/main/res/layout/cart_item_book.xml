@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/cover_image_view"
+            android:layout_width="0dip"
+            android:layout_height="70dp"
+            android:layout_weight="0.15"
+            android:background="#00FFFFFF"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/hp" />
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.65"
+            android:gravity="center"
+            android:padding="15dp"
+            android:singleLine="false"
+            android:text="Henry Potier à l'école des sorciers"
+            android:textAlignment="gravity"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/price_text_view"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="0.1"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:text="35€"
+            android:textAlignment="gravity"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="10dp"
+            android:layout_height="45dp"
+            android:layout_weight="0.10"
+            android:background="@drawable/roundcorner"
+            android:backgroundTint="@color/colorPrimary"
+            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24"
+            app:tint="#FFFFFF" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

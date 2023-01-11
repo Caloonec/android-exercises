@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Library</string>
-    <string name="action_settings">Settings</string>
-    <string name="title">Title</string>
-    <string name="price">Price</string>
-    <string name="total_price">Total Price</string>
-    <string name="clear">Clear</string>
+    <string name="app_name">HP Library BLCCOR</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="title">Titre</string>
+    <string name="price">Prix</string>
+    <string name="total_price">Prix total :</string>
+    <string name="clear">Vider le panier</string>
 </resources>
